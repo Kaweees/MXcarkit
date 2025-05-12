@@ -14,17 +14,17 @@
 
 </div>
 
-<a href="https://github.com/Kaweees/ros2">
-  <img alt="ROS2 Logo" src="assets/img/ros2.png" align="right" width="150">
+<a href="https://mdynamix.de/en/testsystems/mx-carkit-model-car/">
+  <img alt="MXcarkit Logo" src="assets/img/MXcarkit.png" align="right" width="150">
 </a>
 
 <div align="left">
-  <h1><em><a href="https://miguelvf.dev/blog/dotfiles/compendium">~ros2</a></em></h1>
+  <h1><em><a href="https://github.com/Kaweees/MXcarkit">~MXcarkit</a></em></h1>
 </div>
 
 <!-- ABOUT THE PROJECT -->
 
-A template for developing production-ready ROS2 (Humble Hawksbill) applications.
+A template for developing production-ready ROS2 (Humble Hawksbill) applications on the [MdynamiX MXcarkit](https://mdynamix.de/en/testsystems/mx-carkit-model-car/).
 
 ### Built With
 
@@ -49,9 +49,9 @@ To get a local copy of the project up and running on your machine, follow these 
 1. Clone the project repository
 
    ```sh
-   git clone https://github.com/Kaweees/ros2.git
-   sudo chown -R $USER:$(id -gn $USER) ros2
-   cd ros2/
+   git clone https://github.com/Kaweees/MXcarkit.git
+   sudo chown -R $USER:$(id -gn $USER) MXcarkit
+   cd MXcarkit/
 
    ```
 
@@ -64,8 +64,8 @@ To get a local copy of the project up and running on your machine, follow these 
 3. Create a new ROS2 workspace
 
    ```sh
-   mkdir -p ros_ws/src
-   cd ros_ws
+   mkdir -p ros2_ws/src
+   cd ros2_ws
    ```
 
 4. Create a new ROS2 package
@@ -117,12 +117,12 @@ The source code for this project is distributed under the terms of the GNU Gener
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Kaweees/ros2.svg?style=for-the-badge
-[contributors-url]: https://github.com/Kaweees/ros2/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Kaweees/ros2.svg?style=for-the-badge
-[forks-url]: https://github.com/Kaweees/ros2/network/members
-[stars-shield]: https://img.shields.io/github/stars/Kaweees/ros2.svg?style=for-the-badge
-[stars-url]: https://github.com/Kaweees/ros2/stargazers
+[contributors-shield]: https://img.shields.io/github/contributors/Kaweees/MXcarkit.svg?style=for-the-badge
+[contributors-url]: https://github.com/Kaweees/MXcarkit/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Kaweees/MXcarkit.svg?style=for-the-badge
+[forks-url]: https://github.com/Kaweees/MXcarkit/network/members
+[stars-shield]: https://img.shields.io/github/stars/Kaweees/MXcarkit.svg?style=for-the-badge
+[stars-url]: https://github.com/Kaweees/MXcarkit/stargazers
 
 <!-- MARKDOWN SHIELD BAGDES & LINKS -->
 <!-- https://github.com/Ileriayo/markdown-badges -->
