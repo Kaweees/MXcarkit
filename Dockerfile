@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
   direnv \
   python3-pip \
   python3-venv \
+  tmux \
   stow \
   zsh \
   curl \
