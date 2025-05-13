@@ -41,6 +41,7 @@ ros2:
 	docker run -d --rm --net=${NETWORK_NAME} \
 		-v zsh_data:/root/.config/zsh \
 		-v zsh_history:/root/.local/share/zinit \
+		-v $(PWD)/src/:/root/mxck2_ws/:delegated \
 		-v $(SSH_AUTH_SOCK):/ssh-agent \
 		-e SSH_AUTH_SOCK=/ssh-agent \
 		--name $(TARGET) \

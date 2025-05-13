@@ -44,9 +44,6 @@ RUN chsh -s /bin/zsh
 # Set up ROS2 environment
 RUN echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
 
-# Copy the workspace
-COPY ./src /root/mxck2_ws/
-
 # Create and set working directory
 WORKDIR /root/mxck2_ws
 
