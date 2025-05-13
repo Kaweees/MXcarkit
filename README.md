@@ -61,27 +61,13 @@ To get a local copy of the project up and running on your machine, follow these 
    make
    ```
 
-3. Create a new ROS2 workspace
+3. Build the packages
 
    ```sh
-   mkdir -p mxck2_ws/src
-   cd mxck2_ws
+   colcon build --packages-select controller line_follower
    ```
 
-4. Create a new ROS2 package
-
-   ```sh
-   ros2 pkg create <package_name> --build-type ament_cmake --dependencies rclcpp rclpy std_msgs # CMake
-   ros2 pkg create <package_name> --build-type ament_python # Python
-   ```
-
-5. Build the package
-
-   ```sh
-   colcon build --packages-select <package_name>
-   ```
-
-6. Source the project
+4. Source the project
 
    ```sh
    source install/setup.bash   # if using bash
@@ -89,23 +75,27 @@ To get a local copy of the project up and running on your machine, follow these 
    source install/setup.zsh    # if using zsh
    ```
 
-7. Run the package node
+5. Run the package node
 
    ```sh
-   ros2 run <package_name> <node_name>
+   ros2 run controller pid_node
+   ros2 run line_follower line_tracker
    ```
+
+colcon build --packages-select controller line_follower && source install/setup.zsh && ros2 run controller pid_node
+colcon build --packages-select controller line_follower && source install/setup.zsh && ros2 run line_follower line_tracker
 
 <!-- PROJECT FILE STRUCTURE -->
 
 ## Project Structure
 
 ```sh
-graphics/
+MXcarkit/
 ├── .github/                       - GitHub Actions CI/CD workflows
-├── include/                       - project header files
 ├── src/                           - project source files
-│   └── main.c                     - Entry point, main function
-├── CMakeLists.txt                 - CMake build script
+│   ├── controller/                - controller ROS2 package
+│   └── line_follower/             - line follower ROS2 package
+├── Makefile                       - Environment setup script
 ├── LICENSE                        - project license
 └── README.md                      - you are here
 ```
