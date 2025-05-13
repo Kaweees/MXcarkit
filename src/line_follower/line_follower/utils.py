@@ -77,3 +77,108 @@ def draw_box(image, im_canny, corners, color=(0, 255, 0), thickness=2):
     image[y1:y2, x1:x2, :] = patch
 
     return image
+
+
+def parse_predictions(predictions, class_ids=[0]):
+    """
+    Process the model predictions and create a mask image.
+
+    Parameters:
+    - predictions (list): A list containing prediction results like bounding boxes, masks, and class labels.
+
+    Returns:
+    - numpy.ndarray or None: The final mask image resized to the original input size, or None if no masks were found.
+    """
+
+    # We only process one image at a time (batch size = 1)
+    p = predictions[0]
+
+    bboxs = p.boxes
+    ids = bboxs.cls.cpu().numpy()  # Class IDs e.g., center(0), stop(1)
+    confidences = bboxs.conf.cpu().numpy()  # Confidence scores (not used here)
+
+    masks = p.masks
+    if masks is None:
+        return False, None
+
+    # Create a mask for detections that match our target classes (we're only interested in the center line)
+    cls_mask = np.isin(ids, class_ids)
+
+    # If none of the detections match the desired class_ids, exit early
+    if not cls_mask.any():
+        return False, None
+
+    shape = masks.orig_shape
+    (height, width) = shape
+
+    # Each detected object has its own mask
+    data = masks.data.cpu().numpy()  # Shape: (N, W, H) — N = number of masks
+
+    # Keep only the masks and IDs that match our class of interest
+    ids = ids[cls_mask]
+    data = data[cls_mask]
+
+    # Create an empty output image to store our final mask
+    output = np.zeros(shape=shape, dtype=np.uint8)
+
+    for i, mask in enumerate(data):
+        # Resize the mask to match the original image size
+        mask = cv2.resize(mask, (width, height), interpolation=cv2.INTER_NEAREST)
+
+        # We expect only one left and one right lane line
+        # If there are multiple detections, we combine them into one mask
+        # (Another option would be to keep only the detection with the highest confidence)
+        output[mask == 1] = ids[i] + 1  # We add +1 because background is 0
+
+    return True, output
+
+
+def get_base(mask, N=100):
+    y, x = np.nonzero(mask)
+    xs = x[
+        np.argsort(
+            y,
+        )
+    ][-N:]
+    ys = y[np.argsort(y)][-N:]
+
+    cx, cy = np.mean([xs, ys], axis=1)
+
+    return cx, cy
+
+
+def detect_bbox_center(
+    predictions, target_id
+):  # Tells you if object is detected, if true gives you bottom center of bbox for 3d coords and distance.
+
+    # Check if there are any predictions
+    if len(predictions) == 0:
+        return False, None, None
+    p = predictions[0].cpu()  # Move predictiuons from gpu to cpu
+
+    all_bboxes = p.boxes  # access the bounding boxes
+
+    ids = all_bboxes.cls.numpy()  # Class IDs
+    confidences = all_bboxes.conf.numpy()  # Confidence
+
+    # Check if ID is pres4ent in the predictions.
+    if target_id not in ids:
+        return False, None, None  # this is basically if we did not detect a stop sign
+
+    # Filter for boxes with TargetID
+    bboxes = all_bboxes[ids == target_id]
+
+    center_x, center_y, w, h = bboxes.xywh[0].numpy()
+    bottom_y = (
+        center_y + h / 2
+    )  # y axis points downwards in images, so add height to get bottom
+
+    return True, center_x, bottom_y
+
+
+def draw_circle(image, x, y):
+    center = (int(x), int(y))
+    cv2.circle(
+        image, center, radius=5, color=(0, 0, 255), thickness=-1
+    )  # minus one give filled circle, otherwise contour
+    return image
