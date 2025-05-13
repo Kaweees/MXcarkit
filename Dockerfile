@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
   ros2-graph \
+  ultralytics \
   git+https://github.com/william-mx/ros2_numpy.git
 
 # Install the Gitstatus extension

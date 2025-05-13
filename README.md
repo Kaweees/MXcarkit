@@ -74,9 +74,9 @@ To get a local copy of the project up and running on your machine, follow these 
 ```sh
 MXcarkit/
 ├── .github/                       - GitHub Actions CI/CD workflows
-├── src/                           - project source files
-│   ├── controller/                - controller ROS2 package
-│   └── line_follower/             - line follower ROS2 package
+├── src/                           - ROS2 packages
+│   ├── controller/                - PID controller
+│   └── line_follower/             - waypoint tracker
 ├── Makefile                       - Environment setup script
 ├── LICENSE                        - project license
 └── README.md                      - you are here
