@@ -17,19 +17,8 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   fzf \
   tree \
-  libnotify-bin \
-  libignition-cmake2-dev \
-  ros-${ROS_DISTRO}-demo-nodes-cpp \
-  ros-${ROS_DISTRO}-turtlesim \
-  ros-${ROS_DISTRO}-ros-gz \
-  ros-${ROS_DISTRO}-rqt-tf-tree \
-  ros-${ROS_DISTRO}-rosbridge-suite \
   ros-${ROS_DISTRO}-foxglove-bridge \
-  ros-${ROS_DISTRO}-rqt-graph \
-  libignition-plugin-dev \
-  libignition-common4-dev \
-  libignition-gazebo6-dev \
-  python3-transforms3d \
+  libnotify-bin \
   && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
@@ -50,6 +39,9 @@ RUN chsh -s /bin/zsh
 
 # Set up ROS2 environment
 RUN echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
+
+# Copy the workspace
+COPY ./mxck2_ws/src /root/mxck2_ws
 
 # Create and set working directory
 WORKDIR /root/mxck2_ws
