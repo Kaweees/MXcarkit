@@ -61,29 +61,11 @@ To get a local copy of the project up and running on your machine, follow these 
    make
    ```
 
-3. Build the packages
+3. Build and launch the packages in Tmux
 
    ```sh
-   colcon build --packages-select controller line_follower
+   zsh ./launch_nodes.sh  "controller pid_node" "line_follower line_tracker"
    ```
-
-4. Source the project
-
-   ```sh
-   source install/setup.bash   # if using bash
-   # OR
-   source install/setup.zsh    # if using zsh
-   ```
-
-5. Run the package node
-
-   ```sh
-   ros2 run controller pid_node
-   ros2 run line_follower line_tracker
-   ```
-
-colcon build --packages-select controller line_follower && source install/setup.zsh && ros2 run controller pid_node
-colcon build --packages-select controller line_follower && source install/setup.zsh && ros2 run line_follower line_tracker
 
 <!-- PROJECT FILE STRUCTURE -->
 
