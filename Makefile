@@ -4,7 +4,7 @@
 ## Container Section: change these variables based on your container
 # -----------------------------------------------------------------------------
 # The container name.
-TARGET := ros2
+TARGET := mxcarkit
 
 # The container network name.
 NETWORK_NAME := ros

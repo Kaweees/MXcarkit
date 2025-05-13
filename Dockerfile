@@ -52,7 +52,7 @@ RUN chsh -s /bin/zsh
 RUN echo "source /opt/ros/humble/setup.zsh" >> ~/.zshrc
 
 # Create and set working directory
-WORKDIR /root/ros2_ws
+WORKDIR /root/mxck2_ws
 
 # Keep container running
 CMD ["zsh"]
