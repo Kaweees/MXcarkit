@@ -191,8 +191,7 @@ def main(args=None):
     )
 
     # Path to your custom trained YOLO model
-    # /mxck2_ws/install/line_follower → /mxck2_ws/src/line_follower
-    pkg_path = get_package_prefix("line_follower").replace("install", "src")
+    pkg_path = get_package_share_directory("line_follower")
     model_path = pkg_path + "/models/best.pt"
 
     rclpy.init(args=args)

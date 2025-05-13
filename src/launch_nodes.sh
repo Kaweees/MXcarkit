@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#
+# Launch multiple ROS2 nodes in a single tmux session
 # Usage:
 #    launch_nodes.sh launch_cmd1 [launch_cmd2 ... launch_cmdN]
 

@@ -18,10 +18,10 @@ RUN apt-get update && apt-get install -y \
   openssh-client \
   fzf \
   tree \
-  ros-${ROS_DISTRO}-foxglove-bridge \
-  ros-${ROS_DISTRO}-ackermann-msgs \
   libnotify-bin \
   libgl1-mesa-glx \
+  ros-${ROS_DISTRO}-foxglove-bridge \
+  ros-${ROS_DISTRO}-ackermann-msgs \
   && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
