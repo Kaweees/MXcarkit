@@ -33,7 +33,6 @@ A template for developing production-ready ROS2 (Humble Hawksbill) applications 
 [![Python][Python-shield]][Python-url]
 [![GNU Make][GNU-Make-shield]][GNU-Make-url]
 [![Docker][Docker-shield]][Docker-url]
-[![GitHub Actions][github-actions-shield]][github-actions-url]
 
 <!-- GETTING STARTED -->
 
@@ -65,7 +64,13 @@ To get a local copy of the project up and running on your machine, follow these 
 3. Build and launch the packages in Tmux
 
    ```sh
-   zsh ./launch_nodes.sh "controller pid_node" "line_follower line_tracker"
+   clear && zsh ./launch_nodes.sh "controller pid_node" "line_follower line_tracker" "foxglove_bridge foxglove_bridge"
+   ```
+
+4. Access Foxglove telemetry data on the Desktop app by connecting to:
+
+   ```sh
+   ws://localhost:8765
    ```
 
 <!-- PROJECT FILE STRUCTURE -->
@@ -107,7 +112,5 @@ The source code for this project is distributed under the terms of the GNU Gener
 [Python-url]: https://www.python.org/
 [GNU-Make-shield]: https://img.shields.io/badge/GNU%20Make-%23008080.svg?style=for-the-badge&logo=gnu&logoColor=A42E2B&labelColor=222222&color=A42E2B
 [GNU-Make-url]: https://www.gnu.org/software/make/
-[github-actions-shield]: https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=2671E5&labelColor=222222&color=2671E5
-[github-actions-url]: https://github.com/features/actions
 [Docker-shield]: https://img.shields.io/badge/docker-%232671E5.svg?style=for-the-badge&logo=docker&logoColor=1D63ED&labelColor=222222&color=1D63ED
 [Docker-url]: https://www.docker.com/

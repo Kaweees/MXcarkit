@@ -32,20 +32,4 @@ def generate_launch_description() -> LaunchDescription:
         ]
     )
 
-    # Foxglove bridge node declaration
-    foxglove_bridge_node = Node(
-        package="foxglove_bridge",
-        executable="foxglove_bridge",
-        name="foxglove_bridge",
-        output="screen",
-        parameters=[
-            {
-                "capabilities": ["clientPublish", "clientSubscribe"],
-                "useSimTime": False,  # Optional
-            }
-        ],
-    )
-
-    return LaunchDescription(
-        [line_tracker_launch, pid_control_launch, foxglove_bridge_node]
-    )
+    return LaunchDescription([line_tracker_launch, pid_control_launch])

@@ -6,8 +6,6 @@
 # The container name.
 TARGET := mxcarkit
 
-# The container network name.
-NETWORK_NAME := ros
 # The base container image based on your architecture.
 ARCH := $(shell uname -m)
 ifeq ($(ARCH), arm64) # ARM64
@@ -19,10 +17,10 @@ endif
 ## Command Section: change these variables based on your commands
 # -----------------------------------------------------------------------------
 # Targets
-.PHONY: all pull build network ros2 zsh clean arch
+.PHONY: all pull build ros2 zsh clean arch
 
 # Default target: build and run everything
-all: pull network build ros2 zsh
+all: pull build ros2 zsh
 
 # Rule to pull the container image
 pull:
@@ -32,18 +30,15 @@ pull:
 build:
 	docker build . -t ${TARGET} --build-arg BASE_IMAGE=${CONTAINER_NAME}
 
-# Rule to create the ROS network
-network:
-	docker network create ${NETWORK_NAME} 2>/dev/null || true
-
 # Rule to run the ROS2 container
 ros2:
-	docker run -d --rm --net=${NETWORK_NAME} \
+	docker run -d --rm  \
 		-v zsh_data:/root/.config/zsh \
 		-v zsh_history:/root/.local/share/zinit \
 		-v $(PWD)/src/:/root/mxck2_ws/:delegated \
 		-v $(SSH_AUTH_SOCK):/ssh-agent \
 		-e SSH_AUTH_SOCK=/ssh-agent \
+		-p 8765:8765 \
 		--name $(TARGET) \
 		${TARGET} \
 		tail -f /dev/null

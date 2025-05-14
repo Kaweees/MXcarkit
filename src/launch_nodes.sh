@@ -58,4 +58,3 @@ else
   # Attach to the session
   tmux attach-session -t $SESSION_NAME
 fi
-

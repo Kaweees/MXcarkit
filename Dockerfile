@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
   libgl1-mesa-glx \
   ros-${ROS_DISTRO}-foxglove-bridge \
   ros-${ROS_DISTRO}-ackermann-msgs \
+  ros-${ROS_DISTRO}-rosbag2-storage-mcap \
   && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m pip install --no-cache-dir --upgrade pip \
